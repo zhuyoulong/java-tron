@@ -16,9 +16,43 @@ repositories {
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.3'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+    }
+}
+apply plugin: 'org.sonarqube'
+
+subprojects{
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    sourceSets {
+        main {
+            java.srcDir('src/main/java')
+            resources.srcDir('src/main/resources')
+        }
+        test {
+            java.srcDir('src/test/java')
+            resources.srcDir('src/test/resources')
+        }
+    }
+    sonarqube{
+        properties{
+            property "sonar.host.url", "http://localhost:9000/"
+            property "sonar.jdbc.url", "jdbc:mysql://localhost:3306/sonar_local"
+            property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+            property "sonar.jdbc.username", "root"
+            property "sonar.jdbc.password", "123456"
+        }
+    }
+    task wrapper(type: Wrapper) {
+        gradleVersion = '4.5.1'
     }
 }
 
