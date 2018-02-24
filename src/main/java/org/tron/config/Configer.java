@@ -64,6 +64,7 @@ public class Configer {
                 logger.info("Generated nodeID and its private key stored " +
                         "in " + file);
             }
+            //节点私钥
             generatedNodePrivateKey = props.getProperty("nodeIdPrivateKey");
         } catch (IOException e) {
             throw new RuntimeException(e);

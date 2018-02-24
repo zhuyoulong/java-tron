@@ -40,7 +40,7 @@ public class Wallet {
   /**
    * Creates a Wallet with an existing ECKey.
    *
-   * @param ECKey ecKey Existing Key
+   * @param ecKey ecKey Existing Key
    */
   public Wallet(final ECKey ecKey) {
     this.ecKey = ecKey;

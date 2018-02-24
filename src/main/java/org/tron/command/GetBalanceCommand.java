@@ -18,6 +18,8 @@ package org.tron.command;
 import static org.fusesource.jansi.Ansi.ansi;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.tron.application.CliApplication;
 import org.tron.peer.Peer;
 import org.tron.protos.core.TronTXOutput;
@@ -31,7 +33,7 @@ public class GetBalanceCommand extends Command {
     Peer peer = app.getPeer();
 
     byte[] pubKeyHash = peer.getWallet().getEcKey().getPubKey();
-    ArrayList<TronTXOutput.TXOutput> utxos = peer.getUTXOSet().findUTXO(pubKeyHash);
+    List<TronTXOutput.TXOutput> utxos = peer.getUTXOSet().findUTXO(pubKeyHash);
 
     long balance = 0;
 

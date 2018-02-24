@@ -18,6 +18,7 @@
 TRON是一个基于块链的分散式智能协议和应用程序开发平台。它允许每个用户自由地发布，存储和拥有内容和数据，并以分散的自治形式，决定激励机制，通过数字资产分配，流通和交易使应用程序开发人员和内容创建人能够形成分散的内容娱乐生态系统。
 
 TRON是Web 4.0和下一代分散式互联网的产品。
+
 TRON is a block chain-based decentralized smart protocol and an application development platform. It allows each user to freely publish, store and own contents and data, and in the decentralized autonomous form, decides an incentive mechanism and enables application developers and content creators through digital asset distribution, circulation and transaction, thus forming a decentralized content entertainment ecosystem.
 
 TRON is a product of Web 4.0 and the decentralized internet of next generation.
@@ -124,5 +125,14 @@ Chat with us via [Gitter](https://gitter.im/tronprotocol/java-tron).
 
 # Contribution
 Contributions are welcomed and greatly appreciated. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on submitting patches and the contribution workflow.
+
+# 文档： 
+doc
+
+-- idea_gradle_sonarqube配置和执行.pdf
+
+-- maven_sonar_config.md
+
+#例子启动注意事项
 
 我经过程序跟踪发现了问题，第一次生成database/nodeId.properties这个文件不要删除,否则钱包地址不一致，执行getbalance命令的时候总是为0，因为钱包地址不一致的时候不会上leveldb中查询余额
