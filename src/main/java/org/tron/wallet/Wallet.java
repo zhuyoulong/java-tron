@@ -24,6 +24,16 @@ import org.tron.crypto.ECKey;
 import org.tron.utils.ByteArray;
 import org.tron.utils.Utils;
 
+/**
+ * <p>Description:  钱包</p>
+ * <p>Copyright: Copyright (c) 2018     </p>
+ *
+ * @author zhuyoulong
+ * @date 2018年-02月-24日
+ * <p>Update Time:                      </p>
+ * <p>Updater:                          </p>
+ * <p>Update Comments:                  </p>
+ */
 public class Wallet {
 
   private static final Logger logger = LoggerFactory.getLogger("Wallet");

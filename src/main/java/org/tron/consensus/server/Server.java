@@ -20,14 +20,15 @@ import io.atomix.catalyst.transport.netty.NettyTransport;
 import io.atomix.copycat.server.CopycatServer;
 import io.atomix.copycat.server.storage.Storage;
 import io.atomix.copycat.server.storage.StorageLevel;
-import java.io.File;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.concurrent.CompletableFuture;
 import org.tron.application.Service;
 import org.tron.consensus.common.GetQuery;
 import org.tron.consensus.common.MapstateMachine;
 import org.tron.consensus.common.PutCommand;
+
+import java.io.File;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.concurrent.CompletableFuture;
 
 public class Server implements Service {
 
@@ -51,15 +52,18 @@ public class Server implements Service {
               .build())
           .build();
 
+      //注册PutCommand和GetQuery命令类
       server.serializer().register(PutCommand.class);
       server.serializer().register(GetQuery.class);
 
+      //引导一个单节点集群，启动服务器
       CompletableFuture<CopycatServer> future = server.bootstrap();
       future.join();
 
-      //Collection<Address> cluster = Collections.singleton(new Address
-      //        ("192.168.0.100", 5000));
-      //server.join(cluster).join();
+      //其他IP加入集群
+//      Collection<Address> cluster = Collections.singleton(new Address
+//              (localhost.getHostAddress(), 5001));
+//      server.join(cluster).join();
 
       System.out.println("Server xxd: " + server.cluster().members());
       CopycatServer.State state = server.state();

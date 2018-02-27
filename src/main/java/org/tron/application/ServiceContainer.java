@@ -14,9 +14,10 @@
  */
 package org.tron.application;
 
-import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
 
 public class ServiceContainer implements Service {
 
@@ -35,7 +36,7 @@ public class ServiceContainer implements Service {
   public void start() {
     logger.debug("Starting services");
     for (Service service : this.services) {
-      logger.debug("Starting " + service.getClass().getSimpleName());
+      logger.debug("Starting {}" , service.getClass().getSimpleName());
       service.start();
     }
   }

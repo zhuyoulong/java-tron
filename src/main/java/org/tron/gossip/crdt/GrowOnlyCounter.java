@@ -18,10 +18,12 @@
 
 package org.tron.gossip.crdt;
 
-import java.util.HashMap;
-import java.util.Map;
+import lombok.ToString;
 import org.tron.gossip.manager.GossipManager;
 
+import java.util.HashMap;
+import java.util.Map;
+@ToString
 public class GrowOnlyCounter implements CrdtCounter<Long, GrowOnlyCounter> {
 
   private final Map<String, Long> counters = new HashMap<>();
@@ -84,6 +86,9 @@ public class GrowOnlyCounter implements CrdtCounter<Long, GrowOnlyCounter> {
 
   @Override
   public boolean equals(Object obj) {
+    if(obj == null){
+      return false;
+    }
     if (getClass() != obj.getClass()) {
       return false;
     }
@@ -92,8 +97,8 @@ public class GrowOnlyCounter implements CrdtCounter<Long, GrowOnlyCounter> {
   }
 
   @Override
-  public String toString() {
-    return "GrowOnlyCounter [counters= " + counters + ", Value=" + value() + "]";
+  public int hashCode() {
+    return super.hashCode();
   }
 
   Map<String, Long> getCounters() {

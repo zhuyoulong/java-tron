@@ -25,43 +25,48 @@ import org.tron.consensus.server.Server;
 import org.tron.peer.Peer;
 import org.tron.peer.PeerBuilder;
 import org.tron.peer.PeerType;
-
+/**
+ * <p>Description:  例子主程序</p>
+ * <p>Copyright: Copyright (c) 2018     </p>
+ *
+ * @author zhuyoulong
+ * @date 2018年-02月-24日
+ * <p>Update Time:                      </p>
+ * <p>Updater:                          </p>
+ * <p>Update Comments:                  </p>
+ */
 public class Tron {
 
-  private static Peer peer;
-  @Parameter(names = {"--type", "-t"}, validateWith = PeerType.class)
-  private String type = "normal";
+    private static Peer peer;
 
+    @Parameter(names = {"--type", "-t"}, validateWith = PeerType.class)
 
-  public static void main(String[] args) {
-    Tron tron = new Tron();
-    JCommander.newBuilder()
-        .addObject(tron)
-        .build()
-        .parse(args);
-    tron.run();
-  }
+    public static void main(String[] args) {
+        Tron tron = new Tron();
+        JCommander.newBuilder()
+                .addObject(tron)
+                .build()
+                .parse(args);
+        tron.run();
+    }
 
-  public static Peer getPeer() {
-    return peer;
-  }
+    public static Peer getPeer() {
+        return peer;
+    }
 
-  public void run() {
+    public void run() {
+        CliApplication app = new ApplicationFactory().buildCli();
+        app.addService(new Server());
+        app.run();
+        String type = "normal";
+        Peer peer = app.getInjector().getInstance(PeerBuilder.class)
+                .setKey(Configer.getMyKey())
+                .setType(type)
+                .build();
 
-    CliApplication app = new ApplicationFactory()
-        .buildCli();
+        app.setPeer(peer);
 
-    app.addService(new Server());
-    app.run();
-
-    Peer peer = app.getInjector().getInstance(PeerBuilder.class)
-        .setKey(Configer.getMyKey())
-        .setType(type)
-        .build();
-
-    app.setPeer(peer);
-
-    Cli cli = new Cli();
-    cli.run(app);
-  }
+        Cli cli = new Cli();
+        cli.run(app);
+    }
 }

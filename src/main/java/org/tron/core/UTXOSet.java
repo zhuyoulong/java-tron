@@ -17,25 +17,21 @@ package org.tron.core;
 
 import com.google.common.collect.Lists;
 import com.google.protobuf.InvalidProtocolBufferException;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.tron.crypto.ECKey;
 import org.tron.protos.core.TronTXOutput;
 import org.tron.protos.core.TronTXOutputs;
 import org.tron.protos.core.TronTXOutputs.TXOutputs;
 import org.tron.storage.leveldb.LevelDbDataSourceImpl;
 import org.tron.utils.ByteArray;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Slf4j
 public class UTXOSet {
@@ -55,13 +51,10 @@ public class UTXOSet {
 
     public void reindex() {
         log.info("reindex");
-
         txDB.resetDB();
 
         HashMap<String, TXOutputs> utxo = blockchain.findUTXO();
-
         Set<Map.Entry<String, TXOutputs>> entrySet = utxo.entrySet();
-
         for (Map.Entry<String, TXOutputs> entry : entrySet) {
             String key = entry.getKey();
             TXOutputs value = entry.getValue();

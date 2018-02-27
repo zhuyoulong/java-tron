@@ -14,14 +14,13 @@
  */
 package org.tron.peer;
 
-import javax.inject.Inject;
-import org.tron.consensus.client.BlockchainClientListener;
 import org.tron.consensus.client.Client;
 import org.tron.core.Blockchain;
 import org.tron.core.UTXOSet;
 import org.tron.crypto.ECKey;
-import org.tron.utils.ByteArray;
 import org.tron.wallet.Wallet;
+
+import javax.inject.Inject;
 
 /**
  * Builds a peer
@@ -30,9 +29,21 @@ import org.tron.wallet.Wallet;
  */
 public class PeerBuilder {
 
+  /**
+   * 区块链
+   */
   private Blockchain blockchain;
+  /**
+   * 和leveldb打交道
+   */
   private UTXOSet utxoSet;
+  /**
+   * 钱包
+   */
   private Wallet wallet;
+  /**
+   * 私钥
+   */
   private ECKey key;
   private String type;
   private Client client;

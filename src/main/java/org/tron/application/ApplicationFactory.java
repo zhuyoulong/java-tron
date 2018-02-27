@@ -17,9 +17,14 @@ package org.tron.application;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+
 public class ApplicationFactory {
 
   /**
+   * Guice是由Google大牛Bob lee开发的一款绝对轻量级的java IoC容器。其优势在于：
+   * 速度快，号称比spring快100倍。
+   * 无外部配置(如需要使用外部可以可以选用Guice的扩展包)，完全基于annotation特性，支持重构，代码静态检查。
+   * 简单，快速，基本没有学习成本。
    * Build a Guice instance
    *
    * @return Guice
